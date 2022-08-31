@@ -16,12 +16,12 @@
 							@endif
 							@if(in_array('Testimonials', json_decode(Auth::guard('admin') -> user() -> role -> permissions) ))
 							<li> 
-								<a href="#"><i class="fe fe-home"></i> <span>Testimonials</span></a>
+								<a href="{{ route('testimonial.index') }}"><i class="fe fe-home"></i> <span>Testimonials</span></a>
 							</li>
 							@endif
 							@if(in_array('Our Clients', json_decode(Auth::guard('admin') -> user() -> role -> permissions) ))
 							<li> 
-								<a href="#"><i class="fe fe-home"></i> <span>Our Clients</span></a>
+								<a href="{{ route('client.index') }}"><i class="fe fe-home"></i> <span>Our Clients</span></a>
 							</li>
 							@endif
 							@if(in_array('Portfolio', json_decode(Auth::guard('admin') -> user() -> role -> permissions) ))

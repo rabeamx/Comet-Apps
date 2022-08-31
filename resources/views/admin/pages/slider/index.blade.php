@@ -8,7 +8,7 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <h4 class="card-title">All Sliders</h4>
-                <a href="{{ route('sliders.trash') }}" class="text-danger">Trash Users <i class="fa fa-arrow-right"></i></a>
+                <a href="{{ route('sliders.trash') }}" class="text-danger">Trash Sliders <i class="fa fa-arrow-right"></i></a>
             </div>
             @include('validate-main')
             <div class="card-body">

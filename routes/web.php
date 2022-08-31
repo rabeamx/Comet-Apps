@@ -5,11 +5,12 @@ use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\FrontendPageController;
 use App\Http\Controllers\Admin\PermissionController;
-
+use App\Http\Controllers\Admin\TestimonialController;
 
 // admin auth routes
 Route::group([ 'middleware' => 'admin.redirect' ], function(){
@@ -46,5 +47,11 @@ Route::resource('/sliders', SliderController::class);
 Route::get('/sliders-status-update/{id}', [SliderController::class, 'updateStatus']) -> name('sliders.status.update');
 Route::get('/sliders-trash-update/{id}', [SliderController::class, 'updateTrash']) -> name('sliders.trash.update');
 Route::get('/sliders-trash', [SliderController::class, 'trashUsers']) -> name('sliders.trash');
+
+// Testimonial routes
+Route::resource('/testimonial', TestimonialController::class);
+
+// Client routes
+Route::resource('/client', ClientController::class);
 
 });  

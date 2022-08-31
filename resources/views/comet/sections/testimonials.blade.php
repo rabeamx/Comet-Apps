@@ -9,18 +9,23 @@
         <div class="section-content">
           <div id="testimonials-slider" data-options="{&quot;animation&quot;: &quot;slide&quot;, &quot;controlNav&quot;: true}" class="flexslider nav-outside">
             <ul class="slides">
+              @php
+              $testimonials = App\Models\Testimonial::where('status', true) -> where('trash', false) -> latest() -> take(2) -> get();
+              @endphp
+              @forelse ($testimonials as $item)
+                  
               <li>
                 <blockquote>
-                  <p>"Blanditiis impedit omnis excepturi rem dolores! Ab consequuntur reiciendis eaque atque."</p>
-                  <footer>Jon Snow - Google Inc.</footer>
+                  <p>{{ $item -> testimonial }}</p>
+                  <footer>{{ $item -> name }} - {{ $item -> company }}</footer>
                 </blockquote>
               </li>
-              <li>
-                <blockquote>
-                  <p>"Dolorem natus, sint. Enim molestias expedita laboriosam perferendis possimus facere nostrum laudantium vero."</p>
-                  <footer>Daenerys Targarien - Apple Inc.</footer>
-                </blockquote>
-              </li>
+
+              @empty
+                  
+              @endforelse
+
+
             </ul>
           </div>
         </div>

@@ -1,6 +1,8 @@
 <?php
 
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Facade;
+use Intervention\Image\ImageServiceProvider;
 
 return [
 
@@ -185,6 +187,7 @@ return [
         /*
          * Package Service Providers...
          */
+        'Image'  => Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -210,6 +213,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'Image'  => Intervention\Image\Facades\Image::class,
     ])->toArray(),
 
 ];

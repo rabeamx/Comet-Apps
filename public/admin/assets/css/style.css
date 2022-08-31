@@ -4140,4 +4140,13 @@ table.table-inbox tbody tr.checked {
 	.page-header .breadcrumb {
 		display: none;
 	}
+
+}
+
+.btn-opt-area {
+	margin: 20px 0px;
+}
+
+.btn-opt-area input {
+	margin-bottom: 10px;
 }

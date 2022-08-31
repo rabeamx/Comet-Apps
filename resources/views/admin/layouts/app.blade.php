@@ -5,7 +5,7 @@
 <head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-		<title>@yield('Doccure - Dashboard')</title>
+		<title>@yield('title', 'Doccure')</title>
 		
 		<!-- Favicon -->
 		<link rel="shortcut icon" type="image/x-icon" href="{{ asset('admin/assets/img/favicon.png') }}">
@@ -23,6 +23,11 @@
 		
 		<!-- Main CSS -->
 		<link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
+
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.css"/>
+ 
+
+
 		
 		<!--[if lt IE 9]>
 			<script src="admin/assets/js/html5shiv.min.js"></script>
@@ -47,7 +52,10 @@
 					<div class="page-header">
 						<div class="row">
 							<div class="col-sm-12">
-								<h3 class="page-title">Welcome Admin!</h3>
+								@if(Auth::guard('admin') -> user() -> name !== 'provider')
+								{{Auth::guard('admin') -> user() -> role -> permissions}}
+								@endif
+								<h3 class="page-title">Welcome {{ Auth::guard('admin') -> user() -> name }}</h3>
 								<ul class="breadcrumb">
 									<li class="breadcrumb-item active">Dashboard</li>
 								</ul>
@@ -79,6 +87,7 @@
 		<script src="{{ asset('admin/assets/plugins/raphael/raphael.min.js') }}"></script>    
 		<script src="{{ asset('admin/assets/plugins/morris/morris.min.js') }}"></script>  
 		<script src="{{ asset('admin/assets/js/chart.morris.js') }}"></script>
+		<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.js"></script>
 		
 		<!-- Custom JS -->
 		<script  src="{{ asset('admin/assets/js/script.js') }}"></script>

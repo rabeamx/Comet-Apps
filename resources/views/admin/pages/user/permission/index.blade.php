@@ -1,5 +1,6 @@
 @extends('admin.layouts.app')
 
+@section('title', 'permission')
 @section('main-section')
 
     <div class="row">
@@ -7,11 +8,11 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">All Permissions</h4>
-                    @include('validate-main')
                 </div>
+                @include('validate-main')
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table mb-0">
+                        <table class="table mb-0 data-table-haq">
                             <thead>
                                 <tr>
                                     <th>#</th>

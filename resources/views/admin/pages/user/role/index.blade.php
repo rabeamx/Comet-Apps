@@ -1,5 +1,6 @@
 @extends('admin.layouts.app')
 
+@section('title', 'role')
 @section('main-section')
     
 <div class="row">
@@ -7,11 +8,11 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">All Roles</h4>
-                @include('validate-main')
             </div>
+            @include('validate-main')
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table mb-0">
+                    <table class="table mb-0 data-table-haq">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -19,6 +20,7 @@
                                 <th>Slug</th>
                                 <th>Permissions</th>
                                 <th>Created at</th>
+                                <th>Users</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -38,6 +40,15 @@
                                     </ul>
                                 </td>
                                 <td>{{ $per -> created_at -> diffForHumans() }}</td>
+                                <td>
+                                    <ul>
+                                        @forelse (json_decode($per -> users) as $role_user)
+                                            <li>{{ $role_user -> name }}</li>
+                                        @empty
+                                            
+                                        @endforelse
+                                    </ul>
+                                </td>
                                 <td>
                                     {{-- <a href="#" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a> --}}
                                     <a href="{{ route('role.edit', $per -> id ) }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>

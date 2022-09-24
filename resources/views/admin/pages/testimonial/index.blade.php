@@ -35,7 +35,7 @@
                                     <td>{{ $item -> testimonial }}</td>
                                     <td>{{ $item -> created_at -> diffForHumans() }}</td>
                                     <td>
-                                        @if($item -> status)
+                                        @if($item -> status) 
                                             <span class="badge badge-success">Published</span>
                                             <a href="{{ route('sliders.status.update', $item -> id ) }}" class="text-danger"><i class="fa fa-times"></i></a>
                                         @else

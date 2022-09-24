@@ -102,7 +102,7 @@
                 <a href="#">Services</a>
               </li>
               <li>
-                <a href="#">Contact</a>
+                <a href="{{ route('contact.page') }}">Contact</a>
               </li>
             </ul>
             <!-- End navigation menu        -->

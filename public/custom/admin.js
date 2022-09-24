@@ -76,6 +76,68 @@
             $(this).closest('.btn-opt-area').remove();
         }); 
 
+        // icon select
+        $('button.show-icon').click(function(e){
+            e.preventDefault();
+
+            // alert();
+            $('#select-icon').modal('show');
+
+        });
+
+        // select icon
+        $('.select-icon-haq .preview-icon code').click(function(){
+            // alert();
+            let icon_name = $(this).html();
+            console.log(icon_name);
+
+            $('.select-haq-icon-input').val(icon_name);
+            $('#select-icon').modal('hide');
+        });
+
+        // portfolio gallery
+        $('#portfolio-gallery').change(function(e){
+
+             // alert();
+            // console.log(e.target.files);
+            // const gallery = URL.createObjectURL(e.target.files);
+            // console.log(gallery);
+            // $('#slider-photo-preview').attr('src', photo_url);
+            // console.log(e.target.files);
+            const files = e.target.files;
+            // const gallery_ui = '';
+            // files.forEach( items => {
+            //     console.log(items);
+            //     gallery_ui
+            // });
+            // console.log(files.length);
+
+            // let ob_url;
+
+            let gallery_ui = '';
+            for( let i = 0; i < files.length; i++ ){
+                // ob_url += URL.createObjectURL(files[i]);
+
+                const ob_url = URL.createObjectURL(files[i]);
+                gallery_ui += `<img src="${ ob_url }">`;
+                // console.log(ob_url);
+
+                // let ob_url = URL.createObjectURL(files[i]);
+                // console.log(ob_url);
+
+                // console.log(files[i]);
+            }
+            // console.log(ob_url);
+
+            // console.log(gallery_ui);
+            $('.port-gall').html(gallery_ui);
+        });
+
+        // ck editor
+        CKEDITOR.replace('portfolio-desc'); 
+
+
+
     }); 
 
 })(jQuery)

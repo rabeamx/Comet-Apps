@@ -19,7 +19,7 @@ class PermissionController extends Controller
         $permissions = Permission::latest() -> get();
         return view('admin.pages.user.permission.index', [
             'all_permission' => $permissions,
-            'form_type'      => 'create',
+            'form_type'      => 'create', 
         ]);
     }
 

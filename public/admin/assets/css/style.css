@@ -4150,3 +4150,36 @@ table.table-inbox tbody tr.checked {
 .btn-opt-area input {
 	margin-bottom: 10px;
 }
+
+.port-gall {
+	display: flex;
+	flex-flow: wrap;
+	/* justify-content: space-between; */
+	gap: 10px;
+}
+
+.port-gall img {
+	width: 100px;
+	height: 100px;
+	object-fit: cover;
+}
+
+.comet-list {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+.comet-list li {
+	margin: 0px;
+}
+
+.portfolio-step {
+	margin: 5px 0px;
+}
+
+.fimage {
+	width: 100%;
+	height: 250px;
+	object-fit: cover;
+}

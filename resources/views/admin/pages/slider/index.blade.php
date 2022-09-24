@@ -80,7 +80,7 @@
                         <img style="max-width:100%;" id="slider-photo-preview" src="" alt="">
                         <input style="display:none;" name="photo" type="file" class="form-control" id="slider-photo">
                         <label for="slider-photo">
-                            <img style="width: 60px; cursor:pointer;" src="https://cdn.icon-icons.com/icons2/1993/PNG/512/frame_gallery_image_images_photo_picture_pictures_icon_123209.png" alt="">
+                            <img style="width: 60px; cursor:pointer;" src="{{ url('storage/default_photos/avatar.png') }}" alt="">
                         </label>
                     </div>
                     <hr>

@@ -16,7 +16,7 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()    
+    public function index()      
     {
         $all_admin = Admin::latest() -> where('trash', false) -> get();
         $roles = Role::latest() -> get();
@@ -126,7 +126,7 @@ class AdminController extends Controller
             'name'      => $request -> name,
             'email'     => $request -> email,
             'cell'      => $request -> cell,
-            'username'  => $request -> username
+            'username'  => $request -> username 
         ]);
         return back() -> with('success-main', 'Updated Successfully');
     }

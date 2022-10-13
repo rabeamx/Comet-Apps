@@ -46,11 +46,11 @@
 							@endif
 							@if(in_array('Posts', json_decode(Auth::guard('admin') -> user() -> role -> permissions) ))
 							<li class="submenu">
-								<a href="#"><i class="fe fe-document"></i> <span> Posts</span> <span class="menu-arrow"></span></a>
+								<a href="#"><i class="fe fe-document"></i> <span>Posts</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="invoice-report.html">All posts</a></li>
-									<li><a href="invoice-report.html">Category</a></li>
-									<li><a href="invoice-report.html">Tags</a></li>
+									<li><a href="{{ route('post.index') }}">All posts</a></li>
+									<li><a href="{{ route('post-category.index') }}">Category</a></li>
+									<li><a href="{{ route('tag.index') }}">Tags</a></li>
 								</ul>
 							</li>
 							@endif

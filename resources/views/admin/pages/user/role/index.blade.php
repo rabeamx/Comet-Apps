@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'role')
+@section('title', 'Role')
 @section('main-section')
     
 <div class="row">
@@ -8,6 +8,7 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">All Roles</h4>
+                <a href="{{ route('role.trash') }}" class="text-danger">Trash Roles <i class="fa fa-arrow-right"></i></a> 
             </div>
             @include('validate-main')
             <div class="card-body">
@@ -21,6 +22,7 @@
                                 <th>Permissions</th>
                                 <th>Created at</th>
                                 <th>Users</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -50,13 +52,17 @@
                                     </ul>
                                 </td>
                                 <td>
-                                    {{-- <a href="#" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a> --}}
+                                    @if($per -> status)
+                                        <span class="badge badge-success">Published</span>
+                                        <a href="{{ route('role.status.update', $per -> id ) }}" class="text-danger"><i class="fa fa-times"></i></a>
+                                    @else
+                                        <span class="badge badge-danger">Unpublished</span>
+                                        <a href="{{ route('role.status.update', $per -> id ) }}" class="text-success"><i class="fa fa-check"></i></a>
+                                    @endif
+                                </td>
+                                <td>
                                     <a href="{{ route('role.edit', $per -> id ) }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
-                                    <form action="{{ route('role.destroy', $per -> id) }}" class="d-inline delete-form" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-sm btn-danger" type="submit"><i class="fa fa-trash"></i></button>
-                                    </form>
+                                    <a href="{{ route('role.trash.update', $per -> id ) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                             @empty

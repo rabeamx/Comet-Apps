@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'slider')
+@section('title', 'Slider')
 @section('main-section')
 
 <div class="row">   
@@ -10,7 +10,7 @@
                 <h4 class="card-title">All Sliders</h4>
                 <a href="{{ route('sliders.trash') }}" class="text-danger">Trash Sliders <i class="fa fa-arrow-right"></i></a>
             </div>
-            @include('validate-main')
+            @include('validate-main')  
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table mb-0 data-table-haq">
@@ -32,7 +32,7 @@
                                 <td>{{ $item -> title }}</td>
                                 <td><img style="width: 60px;height: 60px; object-fit: cover;" src="{{ url('storage/sliders/' . $item -> photo) }}" alt=""></td>
                                 <td>{{ $item -> created_at -> diffForHumans() }}</td>
-                                <td>
+                                <td> 
                                     @if($item -> status)
                                         <span class="badge badge-success">Published</span>
                                         <a href="{{ route('sliders.status.update', $item -> id ) }}" class="text-danger"><i class="fa fa-times"></i></a>
@@ -80,7 +80,7 @@
                         <img style="max-width:100%;" id="slider-photo-preview" src="" alt="">
                         <input style="display:none;" name="photo" type="file" class="form-control" id="slider-photo">
                         <label for="slider-photo">
-                            <img style="width: 60px; cursor:pointer;" src="{{ url('storage/default_photos/avatar.png') }}" alt="">
+                            <img style="width: 60px; cursor:pointer;" src="https://cdn.icon-icons.com/icons2/1993/PNG/512/frame_gallery_image_images_photo_picture_pictures_icon_123209.png" alt="">
                         </label>
                     </div>
                     <hr>
@@ -103,6 +103,7 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">Edit Slide</h4>
+                <a href="{{ route('sliders.index') }}">back</a>
             </div>
             <div class="card-body">
                 @include('validate')
@@ -123,7 +124,7 @@
                         <img style="max-width:100%;" id="slider-photo-preview" src="{{ url('storage/sliders/'. $slider -> photo) }}" alt="">
                         <input style="display:none;" name="new_photo" type="file" class="form-control" id="slider-photo">
                         <label for="slider-photo">
-                            <img style="width: 60px; cursor:pointer;" src="https://cdn.icon-icons.com/icons2/1993/PNG/512/frame_gallery_image_images_photo_picture_pictures_icon_123209.png" alt="">
+                            <img style="width: 60px; cursor:pointer;" src="https://cdn.icon-icons.com/icons2/1993/PNG/512/frame_gallery_image_images_photo_picture_pictures_icon_123209.png" alt="">  
                         </label>
                     </div>
                     <hr>

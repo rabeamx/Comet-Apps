@@ -26,6 +26,8 @@
 		<link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
 
 		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.css"/>
+
+		<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
  
 
 
@@ -87,13 +89,16 @@
 		
 		<script src="{{ asset('admin/assets/plugins/raphael/raphael.min.js') }}"></script>    
 		<script src="{{ asset('admin/assets/plugins/morris/morris.min.js') }}"></script>  
-		<script src="{{ asset('admin/assets/js/chart.morris.js') }}"></script>
+
 		<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.js"></script>
 		<script src="{{ asset('admin/assets/js/chart.morris.js') }}"></script>
 		
 		<!-- Custom JS -->
 		<script  src="{{ asset('admin/assets/ckeditor/ckeditor.js') }}"></script>
+		<script  src="{{ asset('admin/assets/js/script.js') }}"></script>
 		<script  src="{{ asset('custom/admin.js') }}"></script>
+
+		<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>		
 		
 </body>
 

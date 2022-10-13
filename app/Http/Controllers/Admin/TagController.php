@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Testimonial;
+use App\Models\Tag;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class TestimonialController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,18 +16,10 @@ class TestimonialController extends Controller
      */
     public function index()
     {
-        $testimonials = Testimonial::latest() -> get();
-        return view('admin.pages.testimonial.index', [
-            'form_type'  => 'create',
-            'testimonials'  => $testimonials,
-        ]);
-    }
-
-    public function trashUsers()
-    {
-        $testimonials = Testimonial::latest() -> where('trash', true) -> get();
-        return view('admin.pages.testimonial.trash', [
-            'form_type' => ''
+        $tags = Tag::latest() -> get();
+        return view('admin.pages.post.tag.index', [
+            'tags' => $tags,
+            'form_type'      => 'create',
         ]);
     }
 
@@ -49,18 +42,16 @@ class TestimonialController extends Controller
     public function store(Request $request)
     {
         $this -> validate($request, [
-            'name'     => ['required'],
-            'company'     => ['required'],
-            'testimonial'    => ['required'],
-        ]);
+            'name'      => 'required|unique:tags',
+        ]); 
 
-        Testimonial::create([
+        Tag::create([
             'name'    => $request -> name,
-            'company'    => $request -> company,
-            'testimonial'    => $request -> testimonial,
+            'slug' => Str::slug($request -> name),
         ]);
 
-        return back() -> with('success', 'Testimonial added successfully');
+
+        return back() -> with('success', 'Tag added successfully');
     }
 
     /**

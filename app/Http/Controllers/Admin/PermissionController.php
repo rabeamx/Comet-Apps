@@ -16,10 +16,23 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        $permissions = Permission::latest() -> get();
+        $permissions = Permission::latest() -> where('trash', false) -> get();
         return view('admin.pages.user.permission.index', [
             'all_permission' => $permissions,
             'form_type'      => 'create', 
+        ]);
+    }
+
+    /**
+     *  Show trash roles
+     */
+
+    public function trashUsers()
+    {
+        $permissions = Permission::latest() -> where('trash', true) -> get();
+        return view('admin.pages.user.permission.trash', [
+            'all_permission'  => $permissions,
+            'form_type'  => 'trash',
         ]);
     }
 
@@ -113,4 +126,44 @@ class PermissionController extends Controller
         $delete -> delete();
         return back() -> with('danger-main', 'Permission deleted successfully');
     }
+
+    /**
+     *  update trash
+     */
+
+    public function updateTrash($id)
+    {
+        $data = Permission::findOrFail($id);
+        if($data -> trash){
+            $data -> update([
+                'trash' => false,
+            ]);
+        } else{
+            $data -> update([
+                'trash' => true,
+            ]);
+        }
+
+        return back() -> with('success-main', 'Permission updated successfully');
+
+    }
+
+    public function updateStatus($id)
+    {
+        $data = Permission::findOrFail($id);
+
+        if( $data -> status ){
+            $data -> update([
+                'status' => false,
+            ]);
+        }else {
+            $data -> update([
+                'status' => true,
+            ]);
+        }
+
+        return back() -> with('success-main', 'Permisson updated successfully');
+ 
+    }
+
 }

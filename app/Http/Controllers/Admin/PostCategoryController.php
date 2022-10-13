@@ -2,31 +2,24 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Testimonial;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Categorypost;
 
-class TestimonialController extends Controller
+class PostCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index() 
     {
-        $testimonials = Testimonial::latest() -> get();
-        return view('admin.pages.testimonial.index', [
-            'form_type'  => 'create',
-            'testimonials'  => $testimonials,
-        ]);
-    }
-
-    public function trashUsers()
-    {
-        $testimonials = Testimonial::latest() -> where('trash', true) -> get();
-        return view('admin.pages.testimonial.trash', [
-            'form_type' => ''
+        $categories = Categorypost::latest() -> get();
+        return view('admin.pages.post.category.index', [
+            'categories' => $categories,
+            'form_type'      => 'create',
         ]);
     }
 
@@ -49,18 +42,16 @@ class TestimonialController extends Controller
     public function store(Request $request)
     {
         $this -> validate($request, [
-            'name'     => ['required'],
-            'company'     => ['required'],
-            'testimonial'    => ['required'],
-        ]);
+            'name'      => 'required|unique:categoryposts',
+        ]); 
 
-        Testimonial::create([
+        Categorypost::create([
             'name'    => $request -> name,
-            'company'    => $request -> company,
-            'testimonial'    => $request -> testimonial,
+            'slug' => Str::slug($request -> name),
         ]);
 
-        return back() -> with('success', 'Testimonial added successfully');
+
+        return back() -> with('success', 'Post Category added successfully');
     }
 
     /**

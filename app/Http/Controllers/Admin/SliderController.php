@@ -16,19 +16,19 @@ class SliderController extends Controller
      */
     public function index()
     {
-        $sliders = Slider::latest() -> where('status', true) -> where('trash', false) -> get();
+        $sliders = Slider::latest() -> where('trash', false) -> get();
         return view('admin.pages.slider.index', [
             'form_type'  => 'create',
-            'sliders'    => $sliders,
+            'sliders'    => $sliders, 
         ]); 
     }
 
     public function trashUsers()
     {
-        $sliders = Slider::latest() -> where('status', true) -> where('trash', true) -> get();
+        $sliders = Slider::latest() -> where('trash', true) -> get();
         return view('admin.pages.slider.trash', [
+            'sliders'   => $sliders,
             'form_type'  => 'trash',
-            'sliders'    => $sliders,
         ]);
     }
 

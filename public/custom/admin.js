@@ -136,6 +136,59 @@
         // ck editor
         CKEDITOR.replace('portfolio-desc'); 
 
+        // select 2
+        $('.comet-select-2').select2();
+
+        // post type selector
+        $('#post-type-selector').change(function(){
+
+            const type = $(this).val();
+            // console.log(type);
+
+            if( type == 'standard' ){
+
+                $('.post-standard').show();
+                $('.post-gallery').hide();
+                $('.post-video').hide();
+                $('.post-audio').hide();
+                $('.post-quote').hide();
+
+            } else if( type == 'gallery' ){
+
+                $('.post-standard').hide();
+                $('.post-gallery').show();
+                $('.post-video').hide();
+                $('.post-audio').hide();
+                $('.post-quote').hide();
+
+            } else if( type == 'video' ){
+
+                $('.post-standard').hide();
+                $('.post-gallery').hide();
+                $('.post-video').show();
+                $('.post-audio').hide();
+                $('.post-quote').hide();
+
+            } else if( type == 'audio' ){
+
+                $('.post-standard').hide();
+                $('.post-gallery').hide();
+                $('.post-video').hide();
+                $('.post-audio').show();
+                $('.post-quote').hide();
+
+            } else if( type == 'quote' ){
+
+                $('.post-standard').hide();
+                $('.post-gallery').hide();
+                $('.post-video').hide();
+                $('.post-audio').hide();
+                $('.post-quote').show();
+
+            }
+
+        });
+
 
 
     }); 

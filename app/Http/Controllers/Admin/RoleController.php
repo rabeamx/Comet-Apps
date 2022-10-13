@@ -17,12 +17,25 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::latest() -> get();
+        $roles = Role::latest() -> where('trash', false) -> get();
         $permissions = Permission::latest() -> get();
         return view('admin.pages.user.role.index', [
             'roles'          => $roles,
             'form_type'      => 'create',
             'permissions'    => $permissions,
+        ]);
+    }
+
+    /**
+     *  Show trash roles
+     */
+
+    public function trashUsers()
+    {
+        $roles = Role::latest() -> where('trash', true) -> get();
+        return view('admin.pages.user.role.trash', [
+            'roles'  => $roles,
+            'form_type'  => 'trash',
         ]);
     }
 
@@ -114,10 +127,49 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id)   
     {
         $delete_data = Role::findOrFail($id);
         $delete_data -> delete();
         return back() -> with('success-main', 'Deleted Successfully');
     }
+
+    /**
+     *  update trash
+     */
+
+    public function updateTrash($id)
+    {
+        $data = Role::findOrFail($id);
+        if($data -> trash){
+            $data -> update([
+                'trash' => false,
+            ]);
+        } else{
+            $data -> update([
+                'trash' => true,
+            ]);
+        }
+
+        return back() -> with('success-main', 'status updated successfully');
+
+    }
+
+    public function updateStatus($id)
+    {
+        $data = Role::findOrFail($id);
+
+        if ($data -> status) {
+            $data -> update([
+                'status' => false,
+            ]);
+        } else {
+            $data -> update([
+                'status' => true,
+            ]);
+        }
+
+        return back() -> with('success-main', 'Role updated successfully');
+    }
+
 }

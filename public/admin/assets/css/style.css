@@ -4183,3 +4183,10 @@ table.table-inbox tbody tr.checked {
 	height: 250px;
 	object-fit: cover;
 }
+
+.post-gallery,
+.post-audio,
+.post-video,
+.post-quote {
+	display: none;
+}

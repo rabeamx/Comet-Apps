@@ -1,16 +1,16 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Admin User Trash')
+@section('title', 'Role Trash')
 @section('main-section')
 
 <div class="row">
     <div class="col-lg-8">
         <div class="card">
-            <div class="card-header d-flex justify-content-between">
-                <h4 class="card-title">All Admin Trash</h4>
-                <a href="{{ route('admin-user.index') }}" class="text-success">Published Users <i class="fa fa-arrow-right"></i></a>
-                @include('validate-main')
+            <div class="card-header">
+                <h4 class="card-title">All Roles</h4>
+                <a href="{{ route('role.index') }}" class="text-success">Published Roles <i class="fa fa-arrow-right"></i></a>
             </div>
+            @include('validate-main')
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table mb-0 data-table-haq">
@@ -18,36 +18,38 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
-                                <th>Photo</th>
+                                <th>Created at</th>
+                                <th>Users</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($all_admin as $per)
-                            @if($per -> name !== 'provider')
+                            @forelse ($roles as $per)
                             <tr>
                                 <td>{{ $loop -> index +1 }}</td>
-                                <td>{{ $per -> name }}</td>    
+                                <td>{{ $per -> name }}</td>
+                                <td>{{ $per -> created_at -> diffForHumans() }}</td>
                                 <td>
-                                    @if($per -> photo == 'avatar.png')
-                                    <img style="width:50px; height:50px; object-fit:cover;" src="{{ url('storage/admins/avatar.png') }}" alt="">
-                                    @endif
+                                    <ul>
+                                        @forelse (json_decode($per -> users) as $role_user)
+                                            <li>{{ $role_user -> name }}</li>
+                                        @empty
+                                            
+                                        @endforelse
+                                    </ul>
                                 </td>
                                 <td>
-                                    {{-- <a href="#" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a> --}}
-                                    
-                                    <a href="{{ route('admin.trash.update', $per -> id ) }}" class="btn btn-sm btn-info">Restore User</i></a>
-                                    <form action="{{ route('admin-user.destroy', $per -> id) }}" class="d-inline delete-form" method="POST">
+                                    <a href="{{ route('role.trash.update', $per -> id ) }}" class="btn btn-sm btn-info">Restore Role</i></a>
+                                    <form action="{{ route('role.destroy', $per -> id) }}" class="d-inline delete-form" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-sm btn-danger" type="submit">Delete Permanently</i></button>
                                     </form>
                                 </td>
                             </tr>
-                            @endif
                             @empty
                             <tr>
-                                <td colspan="5" class="text-center text-danger">No records found</td>
+                                <td colspan="6" class="text-center text-danger">No records found</td>
                             </tr>
                             @endforelse
                         </tbody>

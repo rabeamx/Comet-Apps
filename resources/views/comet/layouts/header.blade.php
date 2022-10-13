@@ -99,6 +99,9 @@
                 <a href="#">Team</a>
               </li>
               <li>
+                <a href="{{ route('blog.page') }}">Blog</a>
+              </li>
+              <li>
                 <a href="#">Services</a>
               </li>
               <li>
